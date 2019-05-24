@@ -1,9 +1,16 @@
 {
   "name": "github-pr-stats",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/smoralesd/github-pr-stats.git",
   "author": "Sebastian Morales <sebastian.moralesd@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  }
 }
