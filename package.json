@@ -1,0 +1,9 @@
+{
+  "name": "github-pr-stats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/smoralesd/github-pr-stats.git",
+  "author": "Sebastian Morales <sebastian.moralesd@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
