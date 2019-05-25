@@ -13,7 +13,7 @@ export const getPRs = () => {
 
   const options = client.pulls.list.endpoint.merge({ owner, repo, state: 'all' });
   client.paginate(options).then(pulls => {
-    writeFileSync("msft-ai-web-pulls.json", JSON.stringify(pulls, null, 4), {
+    writeFileSync("data/msft-ai-web-pulls.json", JSON.stringify(pulls, null, 4), {
       encoding: "utf8"
     });
   });
