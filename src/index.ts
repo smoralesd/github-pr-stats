@@ -1,6 +1,7 @@
-import Octokit from "@octokit/rest";
-import { pat } from "./pat";
-import moment from "moment";
+import Octokit from '@octokit/rest';
+import moment from 'moment';
+
+import { pat } from './pat';
 
 const client = new Octokit({
   auth: pat
