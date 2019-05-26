@@ -1,7 +1,10 @@
 import { PullsListResponseItem } from '@octokit/rest';
-
-import * as data from '../data/msft-ai-web-pulls.json';
+import { readFileSync } from 'fs';
 
 export const readPulls = (): PullsListResponseItem[] => {
-    return (data as unknown) as PullsListResponseItem[];
+    const data = readFileSync('data/msft-ai-web-pulls.json', {
+        encoding: 'utf8',
+    });
+
+    return JSON.parse(data) as PullsListResponseItem[];
 };
