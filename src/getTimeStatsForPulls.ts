@@ -8,6 +8,7 @@ const isMerged = (pull: PullsListResponseItem) =>
 type Mapped = {
     id: number;
     yearMonth: string;
+    range: string;
     createdAt: string;
     closedAt: string;
     age: number;
@@ -22,25 +23,35 @@ export type Stats = {
 };
 
 export type TimeStatsForPulls = {
-    [yearMonth: string]: Stats;
+    [range: string]: Stats;
 };
 
 export const getTimeStatsForPulls = (data: PullsListResponseItem[]) => {
     return chain(data)
         .filter(isMerged)
         .map(current => {
+            const dateFormat = 'YYYY-MM-DD';
+
             const createdAt = moment(current.created_at);
+
+            const createdWeekStart = createdAt
+                .startOf('week')
+                .format(dateFormat);
+            const createdWeekEnd = createdAt.endOf('week').format(dateFormat);
+
             const mergedAt = moment(current.merged_at);
             const diff = mergedAt.diff(createdAt);
-            return {
+            const result: Mapped = {
                 id: current.id,
                 yearMonth: createdAt.format('YYYY-MM'),
+                range: `${createdWeekStart}---${createdWeekEnd}`,
                 createdAt: current.created_at,
                 closedAt: current.closed_at,
                 age: moment.duration(diff).asDays(),
-            } as Mapped;
+            };
+            return result;
         })
-        .groupBy(current => current.yearMonth)
+        .groupBy(current => current.range)
         .mapValues(pulls =>
             reduce(
                 pulls,
