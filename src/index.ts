@@ -1,3 +1,9 @@
-import { getPRs } from "./getPRs";
+import { forEach } from 'lodash';
+import { getTimeStatsForPulls } from './getTimeStatsForPulls';
+import { readPulls } from './readPulls';
 
-getPRs();
+const data = readPulls();
+
+const result = getTimeStatsForPulls(data);
+
+forEach(result, (pulls, yearMonth) => console.log(yearMonth, pulls));
