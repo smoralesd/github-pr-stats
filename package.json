@@ -19,6 +19,6 @@
     "dependencies": {
         "@octokit/rest": "^16.27.0",
         "lodash": "^4.17.11",
-        "moment": "^2.24.0"
+        "moment": "^2.29.4"
     }
 }
